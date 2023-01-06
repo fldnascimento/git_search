@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
 import 'package:git_search/src/domain/errors/errors.dart';
 import 'package:git_search/src/external/datasources/git_hub_datasource_impl.dart';
 import 'package:git_search/src/infra/models/repo_model.dart';
 import 'package:git_search/src/infra/models/user_model.dart';
-import 'package:mocktail/mocktail.dart';
 
 import '../../../mocks/repos_json.dart';
 import '../../../mocks/repos_starred_json.dart';

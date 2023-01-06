@@ -1,5 +1,5 @@
-import 'package:git_search/src/domain/entities/repo_entity.dart';
-import 'package:git_search/src/infra/models/user_model.dart';
+import '../../domain/entities/repo_entity.dart';
+import 'user_model.dart';
 
 class RepoModel extends RepoEntity {
   RepoModel({

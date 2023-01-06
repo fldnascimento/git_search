@@ -1,7 +1,8 @@
-import 'package:git_search/src/domain/entities/repo_entity.dart';
-import 'package:git_search/src/domain/entities/user_entity.dart';
-import 'package:git_search/src/domain/errors/errors.dart';
 import 'package:result_dart/result_dart.dart';
+
+import '../entities/repo_entity.dart';
+import '../entities/user_entity.dart';
+import '../errors/errors.dart';
 
 abstract class GitHubRepository {
   AsyncResult<List<UserEntity>, Error> findUsers({

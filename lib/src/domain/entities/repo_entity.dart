@@ -1,4 +1,4 @@
-import 'package:git_search/src/domain/entities/user_entity.dart';
+import 'user_entity.dart';
 
 class RepoEntity {
   final int id;

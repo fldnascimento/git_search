@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
 import 'package:git_search/src/domain/entities/repo_entity.dart';
 import 'package:git_search/src/domain/errors/errors.dart';
 import 'package:git_search/src/infra/datasources/git_hub_datasource.dart';
 import 'package:git_search/src/infra/models/repo_model.dart';
 import 'package:git_search/src/infra/models/user_model.dart';
 import 'package:git_search/src/infra/repositories/git_hub_repository_impl.dart';
-import 'package:mocktail/mocktail.dart';
 
 import '../../../mocks/repo_json.dart';
 import '../../../mocks/user_json.dart';

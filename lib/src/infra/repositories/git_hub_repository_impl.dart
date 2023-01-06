@@ -1,9 +1,10 @@
-import 'package:git_search/src/domain/entities/repo_entity.dart';
-import 'package:git_search/src/domain/entities/user_entity.dart';
-import 'package:git_search/src/domain/errors/errors.dart';
-import 'package:git_search/src/domain/repositories/git_hub_repository.dart';
-import 'package:git_search/src/infra/datasources/git_hub_datasource.dart';
 import 'package:result_dart/result_dart.dart';
+
+import '../../domain/entities/repo_entity.dart';
+import '../../domain/entities/user_entity.dart';
+import '../../domain/errors/errors.dart';
+import '../../domain/repositories/git_hub_repository.dart';
+import '../datasources/git_hub_datasource.dart';
 
 class GitHubRepositoryImpl implements GitHubRepository {
   final GitHubDatasource datasource;

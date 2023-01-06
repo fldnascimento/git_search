@@ -1,10 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:result_dart/result_dart.dart';
+
 import 'package:git_search/src/domain/entities/repo_entity.dart';
 import 'package:git_search/src/domain/errors/errors.dart';
 import 'package:git_search/src/domain/repositories/git_hub_repository.dart';
 import 'package:git_search/src/domain/usecases/find_repos_usecase.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:result_dart/result_dart.dart';
 
 class GitHubRepositoryMock extends Mock implements GitHubRepository {}
 

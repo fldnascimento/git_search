@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:git_search/src/domain/errors/errors.dart';
-import 'package:git_search/src/external/datasources/endpoints/git_hub_endpoints.dart';
-import 'package:git_search/src/infra/datasources/git_hub_datasource.dart';
-import 'package:git_search/src/infra/models/repo_model.dart';
-import 'package:git_search/src/infra/models/user_model.dart';
+
+import '../../domain/errors/errors.dart';
+import '../../infra/datasources/git_hub_datasource.dart';
+import '../../infra/models/repo_model.dart';
+import '../../infra/models/user_model.dart';
+import 'endpoints/git_hub_endpoints.dart';
 
 class GitHubDatasourceImpl implements GitHubDatasource {
   final Dio dio;

@@ -10,12 +10,14 @@ import 'external/datasources/git_hub_datasource_impl.dart';
 import 'infra/datasources/git_hub_datasource.dart';
 import 'infra/repositories/git_hub_repository_impl.dart';
 import 'presenter/cubits/list_users/list_users_cubit.dart';
+import 'presenter/cubits/search/search_cubit.dart';
 import 'presenter/cubits/user_info/search_cubit.dart';
 
 final getIt = GetIt.instance;
 
 void setup() {
   // Cubits
+  getIt.registerLazySingleton(() => SearchCubit());
   getIt.registerLazySingleton(() => ListUsersCubit(findUsersUsecase: getIt()));
   getIt.registerLazySingleton(() => UserInfoCubit(getUserUsecase: getIt()));
 

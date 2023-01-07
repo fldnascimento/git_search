@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../components/container_search.dart';
+import '../../injection_container.dart';
+import '../cubits/search/search_cubit.dart';
+import '../cubits/search/search_state.dart';
+import '../my_bloc/bloc_builder.dart';
+import '../style/app_theme.dart';
+import '../style/sizes.dart';
+import '../style/spacing.dart';
+import '../widgets/container_search.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -10,92 +17,80 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  String _textValue = '';
-
-  bool _showContainerSearch = false;
-  final _textEditingController = TextEditingController();
+  final _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final cubit = getIt<SearchCubit>();
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Column(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextField(
-              controller: _textEditingController,
-              decoration: InputDecoration(
-                hintText: 'Buscar no github...',
-                suffix: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _textEditingController.text = '';
-                      _showContainerSearch = false;
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                    color: Colors.black,
+            Column(
+              children: [
+                Container(
+                  color: context.colorScheme.surface,
+                  padding: const EdgeInsets.all(Spacing.insetExtraSmall),
+                  child: TextField(
+                    controller: _textController,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      filled: true,
+                      hintText: 'Pesquisar no github...',
+                      suffix: IconButton(
+                        onPressed: () {
+                          _textController.text = '';
+                          cubit.handleTextField('');
+                        },
+                        icon: const Icon(Icons.close),
+                      ),
+                    ),
+                    onChanged: cubit.handleTextField,
                   ),
                 ),
-              ),
-              onChanged: (value) {
-                _textValue = value;
-                setState(() {
-                  if (value.isNotEmpty) {
-                    _showContainerSearch = true;
-                  } else {
-                    _showContainerSearch = false;
-                  }
-                });
+              ],
+            ),
+            BlocBuilder<SearchCubit, SearchState>(
+              builder: (context, state) {
+                return Visibility(
+                  visible: state.valueTextField.isNotEmpty,
+                  replacement: Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(Spacing.insetMedium),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              'Pesquise no Github',
+                              style: context.textTheme.headline2?.copyWith(
+                                color: context.colorScheme.onBackground,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: Spacing.stackMedium),
+                            Text(
+                              'Pesquise em todo o Github por Usuários e Repositórios',
+                              style: context.textTheme.bodyLarge,
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: Spacing.stackMedium),
+                            const Icon(Icons.search, size: Sizes.mega),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  child: ContainerSearch(query: state.valueTextField),
+                );
               },
             ),
           ],
         ),
-        elevation: 0,
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Visibility(
-            visible: _showContainerSearch,
-            child: ContainerSearch(query: _textValue),
-          ),
-          Visibility(
-            visible: !_showContainerSearch,
-            child: Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: const [
-                    Text(
-                      'Pesquise no Github.',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      'Pesquise em todo o Github por Usuários e Repositórios',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

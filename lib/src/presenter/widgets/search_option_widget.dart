@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../style/app_theme.dart';
 import '../style/sizes.dart';
 import '../style/spacing.dart';
 
@@ -29,6 +30,7 @@ class SearchOptionWidget extends StatelessWidget {
             child: Text(
               '$label "$query"',
               overflow: TextOverflow.ellipsis,
+              style: context.textTheme.bodyText1,
             ),
           ),
         ],

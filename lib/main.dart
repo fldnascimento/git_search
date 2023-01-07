@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:git_search/src/presenter/pages/search_page.dart';
 
 import 'src/injection_container.dart' as di;
-import 'src/presenter/pages/splash_page.dart';
+import 'src/routes.dart';
 
 void main() {
   di.setup();
@@ -14,13 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Github Search',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const SearchPage(),
+      routerConfig: routes,
     );
   }
 }

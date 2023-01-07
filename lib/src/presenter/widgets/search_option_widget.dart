@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../style/sizes.dart';
+import '../style/spacing.dart';
+
 class SearchOptionWidget extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -20,8 +23,8 @@ class SearchOptionWidget extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          Icon(icon),
-          const SizedBox(width: 16),
+          Icon(icon, size: Sizes.large),
+          const SizedBox(width: Spacing.inlineMedium),
           Expanded(
             child: Text(
               '$label "$query"',

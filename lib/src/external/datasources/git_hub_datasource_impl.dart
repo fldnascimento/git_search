@@ -102,7 +102,7 @@ class GitHubDatasourceImpl implements GitHubDatasource {
     required String login,
   }) async {
     try {
-      final url = GitHubEndpoints.getReposStarred(login);
+      final url = GitHubEndpoints.getUser(login);
       final response = await dio.get(url);
 
       if (response.statusCode == 200) {

@@ -28,7 +28,7 @@ class GitHubRepositoryImpl implements GitHubRepository {
     } on RateLimitExceeded {
       return Failure(RateLimitExceeded());
     } catch (e) {
-      return Failure(Error());
+      return const Failure(Error());
     }
   }
 
@@ -40,14 +40,14 @@ class GitHubRepositoryImpl implements GitHubRepository {
       final result = await datasource.findUsers(query: query);
 
       if (result.isEmpty) {
-        return Failure(UsersNotFound());
+        return const Failure(UsersNotFound('Nenhum usuário encontrado'));
       }
 
       return Success(result);
     } on RateLimitExceeded {
       return Failure(RateLimitExceeded());
     } catch (e) {
-      return Failure(Error());
+      return const Failure(Error());
     }
   }
 
@@ -66,7 +66,7 @@ class GitHubRepositoryImpl implements GitHubRepository {
     } on RateLimitExceeded {
       return Failure(RateLimitExceeded());
     } catch (e) {
-      return Failure(Error());
+      return const Failure(Error());
     }
   }
 
@@ -83,7 +83,7 @@ class GitHubRepositoryImpl implements GitHubRepository {
     } on RateLimitExceeded {
       return Failure(RateLimitExceeded());
     } catch (e) {
-      return Failure(Error());
+      return const Failure(Error());
     }
   }
 }

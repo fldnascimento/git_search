@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:git_search/src/injection_container.dart';
-import 'package:git_search/src/presenter/components/container_search.dart';
-import 'package:git_search/src/presenter/cubits/search/search_state.dart';
-import 'package:git_search/src/presenter/pages/users_page.dart';
 
-import '../cubits/search/search_cubit.dart';
+import '../components/container_search.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -18,106 +13,89 @@ class _SearchPageState extends State<SearchPage> {
   String _textValue = '';
 
   bool _showContainerSearch = false;
+  final _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<SearchCubit>(),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Column(
-            children: [
-              TextField(
-                onChanged: (value) {
-                  _textValue = value;
-                  setState(() {
-                    if (value.isNotEmpty) {
-                      _showContainerSearch = true;
-                    } else {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Column(
+          children: [
+            TextField(
+              controller: _textEditingController,
+              decoration: InputDecoration(
+                hintText: 'Buscar no github...',
+                suffix: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _textEditingController.text = '';
                       _showContainerSearch = false;
-                    }
-                  });
-                },
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                ),
               ),
-            ],
-          ),
-          elevation: 0,
-          actions: [
-            IconButton(
-              onPressed: () {
-                getIt<SearchCubit>().findUsers(_textValue);
+              onChanged: (value) {
+                _textValue = value;
+                setState(() {
+                  if (value.isNotEmpty) {
+                    _showContainerSearch = true;
+                  } else {
+                    _showContainerSearch = false;
+                  }
+                });
               },
-              icon: const Icon(
-                Icons.search,
-                color: Colors.blue,
-              ),
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Visibility(
-                visible: _showContainerSearch,
-                child: ContainerSearch(query: _textValue),
-              ),
-              BlocConsumer<SearchCubit, SearchState>(
-                listener: (context, state) {
-                  if (state is SearchUsersSuccessState) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => UsersPage(users: state.users),
-                      ),
-                    );
-                  }
-                },
-                bloc: getIt<SearchCubit>(),
-                builder: (context, state) {
-                  if (state is SearchLoadingState) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-
-                  return Visibility(
-                    visible: !_showContainerSearch,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
-                              'Encontre sua coisas.',
-                              style: TextStyle(
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            Text(
-                              'Pesquise em todo o Github por Pessoas, Repositórios, e Pull Requests',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ],
+        elevation: 0,
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Visibility(
+            visible: _showContainerSearch,
+            child: ContainerSearch(query: _textValue),
           ),
-        ),
+          Visibility(
+            visible: !_showContainerSearch,
+            child: Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: const [
+                    Text(
+                      'Pesquise no Github.',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      'Pesquise em todo o Github por Usuários e Repositórios',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

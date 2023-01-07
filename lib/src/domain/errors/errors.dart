@@ -1,6 +1,11 @@
-class Error implements Exception {}
+class Error implements Exception {
+  final String? errorMessage;
+  const Error({this.errorMessage});
+}
 
-class UsersNotFound extends Error {}
+class UsersNotFound extends Error {
+  const UsersNotFound(String errorMessage) : super(errorMessage: errorMessage);
+}
 
 class UserNotFound extends Error {}
 

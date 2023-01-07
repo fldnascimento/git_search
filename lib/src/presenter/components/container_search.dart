@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:git_search/src/injection_container.dart';
-import 'package:git_search/src/presenter/cubits/search/search_cubit.dart';
+import 'package:go_router/go_router.dart';
 
 class ContainerSearch extends StatelessWidget {
   final String query;
@@ -12,8 +10,6 @@ class ContainerSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SearchCubit>();
-
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.all(16),
@@ -23,21 +19,21 @@ class ContainerSearch extends StatelessWidget {
             icon: Icons.account_circle_rounded,
             label: 'Usuários com',
             query: query,
-            onTap: () => cubit.findUsers(query),
+            onTap: () => context.push('/list-users/$query'),
           ),
           const SizedBox(height: 16),
           SearchOption(
             icon: Icons.book,
             label: 'Repositórios com',
             query: query,
-            onTap: () => cubit.findRepos(query),
+            onTap: () => context.push('/list-repos/$query'),
           ),
           const SizedBox(height: 16),
           SearchOption(
             icon: Icons.arrow_forward,
             label: 'Pular para',
             query: query,
-            onTap: () => cubit.getUser(query),
+            onTap: () => context.push('/user/$query'),
           ),
         ],
       ),
@@ -72,7 +68,12 @@ class SearchOption extends StatelessWidget {
           const SizedBox(
             width: 8,
           ),
-          Text('$label "$query"'),
+          Expanded(
+            child: Text(
+              '$label "$query"',
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
     );

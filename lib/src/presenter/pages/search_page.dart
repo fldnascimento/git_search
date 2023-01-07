@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:git_search/src/injection_container.dart';
 import 'package:git_search/src/presenter/components/container_search.dart';
 import 'package:git_search/src/presenter/cubits/search/search_state.dart';
+import 'package:git_search/src/presenter/pages/users_page.dart';
 
 import '../cubits/search/search_cubit.dart';
 
@@ -61,22 +62,22 @@ class _SearchPageState extends State<SearchPage> {
                 visible: _showContainerSearch,
                 child: ContainerSearch(query: _textValue),
               ),
-              BlocBuilder<SearchCubit, SearchState>(
+              BlocConsumer<SearchCubit, SearchState>(
+                listener: (context, state) {
+                  if (state is SearchUsersSuccessState) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => UsersPage(users: state.users),
+                      ),
+                    );
+                  }
+                },
                 bloc: getIt<SearchCubit>(),
                 builder: (context, state) {
                   if (state is SearchLoadingState) {
                     return const Center(
                       child: CircularProgressIndicator(),
-                    );
-                  } else if (state is SearchUsersSuccessState) {
-                    return SingleChildScrollView(
-                      child: Column(
-                        children: state.users
-                            .map((e) => ListTile(
-                                  title: Text(e.login),
-                                ))
-                            .toList(),
-                      ),
                     );
                   }
 

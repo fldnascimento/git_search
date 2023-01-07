@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'src/injection_container.dart' as di;
+import 'src/presenter/style/app_theme.dart';
 import 'src/routes.dart';
 
 void main() {
@@ -15,9 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Github Search',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       routerConfig: routes,
     );

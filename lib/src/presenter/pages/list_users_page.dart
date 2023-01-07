@@ -5,6 +5,7 @@ import '../../injection_container.dart';
 import '../cubits/list_users/list_users_cubit.dart';
 import '../cubits/list_users/list_users_state.dart';
 import '../my_bloc/bloc_builder.dart';
+import '../style/app_theme.dart';
 
 class ListUsersPage extends StatefulWidget {
   final String query;
@@ -29,10 +30,7 @@ class _ListUsersPageState extends State<ListUsersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: const Text('Usuários'),
-        foregroundColor: Colors.black,
-        elevation: 0,
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
@@ -51,9 +49,8 @@ class _ListUsersPageState extends State<ListUsersPage> {
                 return Center(
                   child: Text(
                     state.errorMessage,
-                    style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+                    style: context.textTheme.headline3?.copyWith(
+                      color: context.colorScheme.onBackground,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -77,8 +74,11 @@ class _ListUsersPageState extends State<ListUsersPage> {
                           backgroundColor: Colors.transparent,
                           backgroundImage: NetworkImage(user.avatarUrl),
                         ),
-                        title: Text(user.login),
-                        subtitle: Text(user.bio ?? ''),
+                        title: Text(
+                          user.login,
+                          style: context.textTheme.subtitle1,
+                        ),
+                        subtitle: Text(user.name ?? ''),
                       );
                     },
                   ),

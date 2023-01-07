@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../style/app_theme.dart';
+import '../style/spacing.dart';
 import '../widgets/search_option_widget.dart';
 
 class ContainerSearch extends StatelessWidget {
@@ -15,7 +16,7 @@ class ContainerSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: context.colorScheme.surface,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(Spacing.insetMedium),
       child: Column(
         children: [
           SearchOptionWidget(
@@ -24,14 +25,14 @@ class ContainerSearch extends StatelessWidget {
             query: query,
             onTap: () => context.push('/list-users/$query'),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: Spacing.stackLarge),
           SearchOptionWidget(
             icon: Icons.book,
             label: 'Repositórios com',
             query: query,
             onTap: () => context.push('/list-repos/$query'),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: Spacing.stackLarge),
           SearchOptionWidget(
             icon: Icons.arrow_forward,
             label: 'Pular para',

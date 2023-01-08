@@ -20,14 +20,14 @@ class ContainerSearch extends StatelessWidget {
       child: Column(
         children: [
           SearchOptionWidget(
-            icon: Icons.account_circle_rounded,
+            icon: Icons.group,
             label: 'Usuários com',
             query: query,
             onTap: () => context.push('/list-users/$query'),
           ),
           const SizedBox(height: Spacing.stackLarge),
           SearchOptionWidget(
-            icon: Icons.book,
+            icon: Icons.folder_copy,
             label: 'Repositórios com',
             query: query,
             onTap: () => context.push('/list-repos/$query'),

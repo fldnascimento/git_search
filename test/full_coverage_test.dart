@@ -51,4 +51,4 @@ import 'package:git_search/src/domain/entities/user_entity.dart';
 import 'package:git_search/src/domain/entities/repo_entity.dart';
 import 'package:git_search/src/injection_container.dart';
 
-void main() {}
+void main() => {};

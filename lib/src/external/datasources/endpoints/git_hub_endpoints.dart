@@ -1,5 +1,5 @@
 class GitHubEndpoints {
-  const GitHubEndpoints();
+  const GitHubEndpoints._();
 
   static const String _base = 'https://api.github.com';
 

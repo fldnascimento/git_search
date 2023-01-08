@@ -9,7 +9,7 @@ class UserInfoCubit extends Cubit<UserInfoState> {
     required this.getUserUsecase,
   }) : super(UserInfoLoadingState());
 
-  void getUser(String login) async {
+  Future<void> getUser(String login) async {
     emit(UserInfoLoadingState());
     final result = await getUserUsecase(login: login);
     result.fold(

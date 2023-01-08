@@ -37,7 +37,7 @@ void main() {
 
   test('should return a ParamEmpty when query is empty', () async {
     when(() => repository.findRepos(query: any(named: 'query')))
-        .thenAnswer((_) async => Failure(ParamEmpty()));
+        .thenAnswer((_) async => const Failure(ParamEmpty()));
     final result = await usecase(query: '');
     expect(result.fold((s) => s, (f) => f), isA<ParamEmpty>());
   });

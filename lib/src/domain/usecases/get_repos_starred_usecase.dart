@@ -18,7 +18,7 @@ class GetReposStarredUsecaseImpl implements GetReposStarredUsecase {
   @override
   AsyncResult<List<RepoEntity>, Error> call({required String login}) async {
     if (login.isEmpty) {
-      return Failure(ParamEmpty());
+      return const Failure(ParamEmpty());
     }
 
     return gitHubRepository.getReposStarred(login: login);

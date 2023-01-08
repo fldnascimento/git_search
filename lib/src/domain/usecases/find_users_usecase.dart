@@ -18,7 +18,7 @@ class FindUsersUsecaseImpl implements FindUsersUsecase {
   @override
   AsyncResult<List<UserEntity>, Error> call({required String query}) async {
     if (query.isEmpty) {
-      return Failure(ParamEmpty());
+      return const Failure(ParamEmpty());
     }
 
     return gitHubRepository.findUsers(query: query);

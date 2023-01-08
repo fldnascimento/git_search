@@ -7,6 +7,8 @@ import '../cubits/user_info/search_state.dart';
 import '../my_bloc/bloc_builder.dart';
 import '../style/components/components.dart';
 import '../style/spacing.dart';
+import '../widgets/failure_widget.dart';
+import '../widgets/progress_indicator_widget.dart';
 import '../widgets/user_profile.dart';
 
 class UserInfoPage extends StatefulWidget {
@@ -43,12 +45,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 BlocBuilder<UserInfoCubit, UserInfoState>(
                   bloc: getIt<UserInfoCubit>(),
                   builder: (context, state) {
-                    if (state is UserInfoLoadingState) {
-                      return const Expanded(
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                    if (state is UserInfoFailureState) {
+                      return Expanded(
+                        child: FailureWidget(message: state.message),
                       );
+                    }
+
+                    if (state is UserInfoLoadingState) {
+                      return const ProgressIndicatorWidget();
                     }
 
                     if (state is UserInfoSuccessState) {
@@ -71,7 +75,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                   GitButton(
                                     label: 'Repositórios',
                                     onPressed: () {
-                                      context.push('/list-repos-user/${state.user.login}/false');
+                                      context.push(
+                                        '/list-repos-user/${state.user.login}/false',
+                                      );
                                     },
                                   ),
                                   const SizedBox(
@@ -80,7 +86,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                   GitButton(
                                     label: 'Estrelou',
                                     onPressed: () {
-                                      context.push('/list-repos-user/${state.user.login}/true');
+                                      context.push(
+                                        '/list-repos-user/${state.user.login}/true',
+                                      );
                                     },
                                   ),
                                 ],

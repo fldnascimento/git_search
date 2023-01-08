@@ -4,8 +4,9 @@ import '../../injection_container.dart';
 import '../cubits/list_repos_user/list_repos_user_cubit.dart';
 import '../cubits/list_repos_user/list_repos_user_state.dart';
 import '../my_bloc/bloc_builder.dart';
-import '../style/app_theme.dart';
+import '../widgets/failure_widget.dart';
 import '../widgets/list_tile_repos.dart';
+import '../widgets/progress_indicator_widget.dart';
 
 class ListReposUserPage extends StatefulWidget {
   final String login;
@@ -48,21 +49,11 @@ class _ListReposUserPageState extends State<ListReposUserPage> {
             bloc: getIt<ListReposUserCubit>(),
             builder: (context, state) {
               if (state is ListReposUserLoadingState) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const ProgressIndicatorWidget();
               }
 
               if (state is ListReposUserFailureState) {
-                return Center(
-                  child: Text(
-                    state.errorMessage,
-                    style: context.textTheme.headline3?.copyWith(
-                      color: context.colorScheme.onBackground,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                );
+                return FailureWidget(message: state.message);
               }
 
               if (state is ListReposUserSuccessState) {

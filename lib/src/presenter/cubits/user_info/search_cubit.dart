@@ -14,7 +14,7 @@ class UserInfoCubit extends Cubit<UserInfoState> {
     final result = await getUserUsecase(login: login);
     result.fold(
       (success) => emit(UserInfoSuccessState(user: success)),
-      (failure) => emit(UserInfoFailureState(errorMessage: failure.toString())),
+      (failure) => emit(UserInfoFailureState(message: failure.message)),
     );
   }
 }

@@ -26,9 +26,9 @@ class GitHubRepositoryImpl implements GitHubRepository {
 
       return Success(result);
     } on RateLimitExceeded {
-      return Failure(RateLimitExceeded());
+      return const Failure(RateLimitExceeded());
     } catch (e) {
-      return const Failure(Error());
+      return const Failure(ErrorUnknown());
     }
   }
 
@@ -45,9 +45,9 @@ class GitHubRepositoryImpl implements GitHubRepository {
 
       return Success(result);
     } on RateLimitExceeded {
-      return Failure(RateLimitExceeded());
+      return const Failure(RateLimitExceeded());
     } catch (e) {
-      return const Failure(Error());
+      return const Failure(ErrorUnknown());
     }
   }
 
@@ -64,9 +64,9 @@ class GitHubRepositoryImpl implements GitHubRepository {
 
       return Success(result);
     } on RateLimitExceeded {
-      return Failure(RateLimitExceeded());
+      return const Failure(RateLimitExceeded());
     } catch (e) {
-      return const Failure(Error());
+      return const Failure(ErrorUnknown());
     }
   }
 
@@ -79,11 +79,11 @@ class GitHubRepositoryImpl implements GitHubRepository {
 
       return Success(result);
     } on UserNotFound {
-      return Failure(UserNotFound());
+      return const Failure(UserNotFound());
     } on RateLimitExceeded {
-      return Failure(RateLimitExceeded());
+      return const Failure(RateLimitExceeded());
     } catch (e) {
-      return const Failure(Error());
+      return const Failure(ErrorUnknown());
     }
   }
 
@@ -102,9 +102,9 @@ class GitHubRepositoryImpl implements GitHubRepository {
     } on ReposNotFound {
       return const Failure(ReposNotFound());
     } on RateLimitExceeded {
-      return Failure(RateLimitExceeded());
+      return const Failure(RateLimitExceeded());
     } catch (e) {
-      return const Failure(Error());
+      return const Failure(ErrorUnknown());
     }
   }
 }

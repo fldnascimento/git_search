@@ -6,6 +6,8 @@ import '../cubits/list_users/list_users_cubit.dart';
 import '../cubits/list_users/list_users_state.dart';
 import '../my_bloc/bloc_builder.dart';
 import '../style/app_theme.dart';
+import '../widgets/failure_widget.dart';
+import '../widgets/progress_indicator_widget.dart';
 
 class ListUsersPage extends StatefulWidget {
   final String query;
@@ -24,6 +26,11 @@ class _ListUsersPageState extends State<ListUsersPage> {
   void initState() {
     getIt<ListUsersCubit>().findUsers(widget.query);
     super.initState();
+    String teste = '';
+    switch (teste) {
+      case "":
+        break;
+    }
   }
 
   @override
@@ -40,21 +47,11 @@ class _ListUsersPageState extends State<ListUsersPage> {
             bloc: getIt<ListUsersCubit>(),
             builder: (context, state) {
               if (state is ListUsersLoadingState) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const ProgressIndicatorWidget();
               }
 
               if (state is ListUsersFailureState) {
-                return Center(
-                  child: Text(
-                    state.errorMessage,
-                    style: context.textTheme.headline3?.copyWith(
-                      color: context.colorScheme.onBackground,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                );
+                return FailureWidget(message: state.message);
               }
 
               if (state is ListUsersSuccessState) {
@@ -66,7 +63,7 @@ class _ListUsersPageState extends State<ListUsersPage> {
                       final user = state.users[index];
 
                       return ListTile(
-                        onTap: () async {
+                        onTap: () {
                           context.push('/user/${user.login}');
                         },
                         leading: ClipRRect(

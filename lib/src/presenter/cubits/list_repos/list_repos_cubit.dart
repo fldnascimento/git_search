@@ -7,15 +7,14 @@ class ListReposCubit extends Cubit<ListReposState> {
 
   ListReposCubit({
     required this.findReposUsecase,
-  }) : super(ListReposInitialState());
+  }) : super(ListReposLoadingState());
 
   void findRepos(String query) async {
-    emit(ListReposLoadingState());
     final result = await findReposUsecase(query: query);
     result.fold(
       (success) => emit(ListReposSuccessState(repos: success)),
       (failure) => emit(
-        ListReposFailureState(errorMessage: failure.errorMessage ?? ''),
+        ListReposFailureState(message: failure.message),
       ),
     );
   }

@@ -14,10 +14,10 @@ class UserInfoInitialState extends UserInfoState {}
 class UserInfoLoadingState extends UserInfoState {}
 
 class UserInfoFailureState extends UserInfoState {
-  final String errorMessage;
-  const UserInfoFailureState({required this.errorMessage});
+  final String message;
+  const UserInfoFailureState({required this.message});
   @override
-  List<Object?> get props => [errorMessage];
+  List<Object?> get props => [message];
 }
 
 class UserInfoSuccessState extends UserInfoState {

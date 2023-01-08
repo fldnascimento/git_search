@@ -9,15 +9,13 @@ abstract class ListReposState extends Equatable {
   List<Object?> get props => [];
 }
 
-class ListReposInitialState extends ListReposState {}
-
 class ListReposLoadingState extends ListReposState {}
 
 class ListReposFailureState extends ListReposState {
-  final String errorMessage;
-  const ListReposFailureState({required this.errorMessage});
+  final String message;
+  const ListReposFailureState({required this.message});
   @override
-  List<Object?> get props => [errorMessage];
+  List<Object?> get props => [message];
 }
 
 class ListReposSuccessState extends ListReposState {

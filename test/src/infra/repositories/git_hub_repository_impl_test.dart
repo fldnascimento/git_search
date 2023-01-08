@@ -47,14 +47,14 @@ void main() {
 
     test('should find repos but throws RateLimitExceeded', () async {
       when(() => datasource.findRepos(query: any(named: 'query')))
-          .thenThrow(RateLimitExceeded());
+          .thenThrow(const RateLimitExceeded());
       final result = await repository.findRepos(query: 'repo');
       expect(result.fold((s) => s, (f) => f), isA<RateLimitExceeded>());
     });
 
     test('should find repos but throws Error', () async {
       when(() => datasource.findRepos(query: any(named: 'query')))
-          .thenThrow(const Error());
+          .thenThrow(const ErrorUnknown());
       final result = await repository.findRepos(query: 'repo');
       expect(result.fold((s) => s, (f) => f), isA<Error>());
     });
@@ -83,14 +83,14 @@ void main() {
 
     test('should find users but throws RateLimitExceeded', () async {
       when(() => datasource.findUsers(query: any(named: 'query')))
-          .thenThrow(RateLimitExceeded());
+          .thenThrow(const RateLimitExceeded());
       final result = await repository.findUsers(query: 'user');
       expect(result.fold((s) => s, (f) => f), isA<RateLimitExceeded>());
     });
 
     test('should find users but throws Error', () async {
       when(() => datasource.findUsers(query: any(named: 'query')))
-          .thenThrow(const Error());
+          .thenThrow(const ErrorUnknown());
       final result = await repository.findUsers(query: 'user');
       expect(result.fold((s) => s, (f) => f), isA<Error>());
     });
@@ -120,14 +120,14 @@ void main() {
 
     test('should get repos starred but throws RateLimitExceeded', () async {
       when(() => datasource.getReposStarred(login: any(named: 'login')))
-          .thenThrow(RateLimitExceeded());
+          .thenThrow(const RateLimitExceeded());
       final result = await repository.getReposStarred(login: 'login');
       expect(result.fold((s) => s, (f) => f), isA<RateLimitExceeded>());
     });
 
     test('should get repos starred but throws Error', () async {
       when(() => datasource.getReposStarred(login: any(named: 'login')))
-          .thenThrow(const Error());
+          .thenThrow(const ErrorUnknown());
       final result = await repository.getReposStarred(login: 'login');
       expect(result.fold((s) => s, (f) => f), isA<Error>());
     });
@@ -149,21 +149,21 @@ void main() {
 
     test('should get user but throws UserNotFound', () async {
       when(() => datasource.getUser(login: any(named: 'login')))
-          .thenThrow(UserNotFound());
+          .thenThrow(const UserNotFound());
       final result = await repository.getUser(login: 'login');
       expect(result.fold((s) => s, (f) => f), isA<UserNotFound>());
     });
 
     test('should get user but throws RateLimitExceeded', () async {
       when(() => datasource.getUser(login: any(named: 'login')))
-          .thenThrow(RateLimitExceeded());
+          .thenThrow(const RateLimitExceeded());
       final result = await repository.getUser(login: 'login');
       expect(result.fold((s) => s, (f) => f), isA<RateLimitExceeded>());
     });
 
     test('should get user but throws Error', () async {
       when(() => datasource.getUser(login: any(named: 'login')))
-          .thenThrow(const Error());
+          .thenThrow(const ErrorUnknown());
       final result = await repository.getUser(login: 'login');
       expect(result.fold((s) => s, (f) => f), isA<Error>());
     });
@@ -193,14 +193,14 @@ void main() {
 
     test('should get user repos but throws RateLimitExceeded', () async {
       when(() => datasource.getUserRepos(login: any(named: 'login')))
-          .thenThrow(RateLimitExceeded());
+          .thenThrow(const RateLimitExceeded());
       final result = await repository.getUserRepos(login: 'login');
       expect(result.fold((s) => s, (f) => f), isA<RateLimitExceeded>());
     });
 
     test('should get user repos but throws Error', () async {
       when(() => datasource.getUserRepos(login: any(named: 'login')))
-          .thenThrow(const Error());
+          .thenThrow(const ErrorUnknown());
       final result = await repository.getUserRepos(login: 'login');
       expect(result.fold((s) => s, (f) => f), isA<Error>());
     });

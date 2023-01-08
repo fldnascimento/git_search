@@ -18,7 +18,7 @@ class FindReposUsecaseImpl implements FindReposUsecase {
   @override
   AsyncResult<List<RepoEntity>, Error> call({required String query}) async {
     if (query.isEmpty) {
-      return Failure(ParamEmpty());
+      return const Failure(ParamEmpty());
     }
 
     return gitHubRepository.findRepos(query: query);

@@ -19,21 +19,21 @@ void main() {
 
   test('should call repository.getUser', () async {
     when(() => repository.getUser(login: any(named: 'login')))
-        .thenAnswer((_) async => Failure(UserNotFound()));
+        .thenAnswer((_) async => const Failure(UserNotFound()));
     await usecase(login: 'fldnascimento');
     verify(() => repository.getUser(login: any(named: 'login'))).called(1);
   });
 
   test('should return a user not found', () async {
     when(() => repository.getUser(login: any(named: 'login')))
-        .thenAnswer((_) async => Failure(UserNotFound()));
+        .thenAnswer((_) async => const Failure(UserNotFound()));
     final result = await usecase(login: 'fldnascimento');
     expect(result.fold((s) => s, (f) => f), isA<UserNotFound>());
   });
 
   test('should return a ParamEmpty when query is empty', () async {
     when(() => repository.getUser(login: any(named: 'login')))
-        .thenAnswer((_) async => Failure(ParamEmpty()));
+        .thenAnswer((_) async => const Failure(ParamEmpty()));
     final result = await usecase(login: '');
     expect(result.fold((s) => s, (f) => f), isA<ParamEmpty>());
   });

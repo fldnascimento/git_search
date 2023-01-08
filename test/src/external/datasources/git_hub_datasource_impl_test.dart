@@ -79,7 +79,7 @@ void main() {
     test(
       'should find repos but throws RateLimitExceeded when statusCode 403',
       () async {
-        when(() => dio.get(any())).thenThrow(RateLimitExceeded());
+        when(() => dio.get(any())).thenThrow(const RateLimitExceeded());
         final future = datasource.findRepos(query: 'repo');
         expect(future, throwsA(isA<RateLimitExceeded>()));
       },
@@ -135,7 +135,7 @@ void main() {
     test(
       'should find users but throws RateLimitExceeded when statusCode 403',
       () async {
-        when(() => dio.get(any())).thenThrow(RateLimitExceeded());
+        when(() => dio.get(any())).thenThrow(const RateLimitExceeded());
         final future = datasource.findUsers(query: 'user');
         expect(future, throwsA(isA<RateLimitExceeded>()));
       },
@@ -191,7 +191,7 @@ void main() {
     test(
       'should get repos starred but throws RateLimitExceeded when statusCode 403',
       () async {
-        when(() => dio.get(any())).thenThrow(RateLimitExceeded());
+        when(() => dio.get(any())).thenThrow(const RateLimitExceeded());
         final future = datasource.getReposStarred(login: 'login');
         expect(future, throwsA(isA<RateLimitExceeded>()));
       },
@@ -247,7 +247,7 @@ void main() {
     test(
       'should get user but throws RateLimitExceeded when statusCode 403',
       () async {
-        when(() => dio.get(any())).thenThrow(RateLimitExceeded());
+        when(() => dio.get(any())).thenThrow(const RateLimitExceeded());
         final future = datasource.getUser(login: 'login');
         expect(future, throwsA(isA<RateLimitExceeded>()));
       },
@@ -303,7 +303,7 @@ void main() {
     test(
       'should get user repos throws RateLimitExceeded when statusCode 403',
       () async {
-        when(() => dio.get(any())).thenThrow(RateLimitExceeded());
+        when(() => dio.get(any())).thenThrow(const RateLimitExceeded());
         final future = datasource.getUserRepos(login: 'login');
         expect(future, throwsA(isA<RateLimitExceeded>()));
       },

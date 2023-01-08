@@ -18,7 +18,7 @@ class GetUserUsecaseImpl implements GetUserUsecase {
   @override
   AsyncResult<UserEntity, Error> call({required String login}) async {
     if (login.isEmpty) {
-      return Failure(ParamEmpty());
+      return const Failure(ParamEmpty());
     }
 
     return gitHubRepository.getUser(login: login);

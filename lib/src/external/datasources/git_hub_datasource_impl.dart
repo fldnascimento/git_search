@@ -27,15 +27,16 @@ class GitHubDatasourceImpl implements GitHubDatasource {
             .toList();
 
         return repos;
-      } else if (response.statusCode == 403) {
-        throw RateLimitExceeded();
       } else {
         throw Exception();
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        throw TimeoutConnection();
+        throw const TimeoutConnection();
+      }
+      if (e.response?.statusCode == 403) {
+        throw const RateLimitExceeded();
       }
       rethrow;
     }
@@ -55,15 +56,16 @@ class GitHubDatasourceImpl implements GitHubDatasource {
             .toList();
 
         return users;
-      } else if (response.statusCode == 403) {
-        throw RateLimitExceeded();
       } else {
         throw Exception();
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        throw TimeoutConnection();
+        throw const TimeoutConnection();
+      }
+      if (e.response?.statusCode == 403) {
+        throw const RateLimitExceeded();
       }
       rethrow;
     }
@@ -84,14 +86,14 @@ class GitHubDatasourceImpl implements GitHubDatasource {
 
         return reposStarred;
       } else if (response.statusCode == 403) {
-        throw RateLimitExceeded();
+        throw const RateLimitExceeded();
       } else {
         throw Exception();
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        throw TimeoutConnection();
+        throw const TimeoutConnection();
       }
       rethrow;
     }
@@ -110,16 +112,16 @@ class GitHubDatasourceImpl implements GitHubDatasource {
 
         return user;
       } else if (response.statusCode == 404) {
-        throw UserNotFound();
+        throw const UserNotFound();
       } else if (response.statusCode == 403) {
-        throw RateLimitExceeded();
+        throw const RateLimitExceeded();
       } else {
         throw Exception();
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        throw TimeoutConnection();
+        throw const TimeoutConnection();
       }
       rethrow;
     }
@@ -142,14 +144,14 @@ class GitHubDatasourceImpl implements GitHubDatasource {
       } else if (response.statusCode == 404) {
         throw const ReposNotFound();
       } else if (response.statusCode == 403) {
-        throw RateLimitExceeded();
+        throw const RateLimitExceeded();
       } else {
         throw Exception();
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        throw TimeoutConnection();
+        throw const TimeoutConnection();
       }
       rethrow;
     }

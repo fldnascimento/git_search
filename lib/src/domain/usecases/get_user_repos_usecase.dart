@@ -18,7 +18,7 @@ class GetUserReposUsecaseImpl implements GetUserReposUsecase {
   @override
   AsyncResult<List<RepoEntity>, Error> call({required String login}) async {
     if (login.isEmpty) {
-      return Failure(ParamEmpty());
+      return const Failure(ParamEmpty());
     }
 
     return gitHubRepository.getUserRepos(login: login);

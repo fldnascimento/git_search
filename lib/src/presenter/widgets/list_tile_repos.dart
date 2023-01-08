@@ -30,7 +30,7 @@ class ListTileRepos extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (onTap != null)
+            if (showUserAvatar)
               Row(
                 children: [
                   CircleAvatar(
@@ -50,7 +50,7 @@ class ListTileRepos extends StatelessWidget {
               repo.name,
               style: context.textTheme.subtitle1,
             ),
-            if (repo.description != null && repo.description!.isNotEmpty)
+            if (showDescription) ...[
               Text(
                 repo.description ?? '',
                 maxLines: 3,
@@ -59,8 +59,8 @@ class ListTileRepos extends StatelessWidget {
                   color: context.colorScheme.outline,
                 ),
               ),
-            if (repo.description != null && repo.description!.isNotEmpty)
               const SizedBox(height: Spacing.stackMicro),
+            ],
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -71,7 +71,7 @@ class ListTileRepos extends StatelessWidget {
                 const SizedBox(width: Spacing.inlineMicro),
                 Text('${repo.stargazersCount}'),
                 const SizedBox(width: Spacing.inlineSmall),
-                if (repo.language != null && repo.language!.isNotEmpty) ...[
+                if (showLanguage) ...[
                   Icon(
                     Icons.subtitles,
                     color: context.colorScheme.primary,
@@ -86,4 +86,9 @@ class ListTileRepos extends StatelessWidget {
       ),
     );
   }
+
+  bool get showUserAvatar => onTap != null;
+  bool get showDescription =>
+      repo.description != null && repo.description!.isNotEmpty;
+  bool get showLanguage => repo.language != null && repo.language!.isNotEmpty;
 }

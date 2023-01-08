@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../injection_container.dart';
 import '../cubits/user_info/search_cubit.dart';
@@ -69,14 +70,18 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                 children: [
                                   GitButton(
                                     label: 'Repositórios',
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      context.push('/list-repos-user/${state.user.login}/false');
+                                    },
                                   ),
                                   const SizedBox(
                                     width: Spacing.inlineExtraSmall,
                                   ),
                                   GitButton(
                                     label: 'Estrelou',
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      context.push('/list-repos-user/${state.user.login}/true');
+                                    },
                                   ),
                                 ],
                               ),

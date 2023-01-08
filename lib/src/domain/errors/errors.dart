@@ -4,12 +4,14 @@ class Error implements Exception {
 }
 
 class UsersNotFound extends Error {
-  const UsersNotFound(String errorMessage) : super(errorMessage: errorMessage);
+  const UsersNotFound() : super(errorMessage: 'Nenhum usuário encontrado');
 }
 
 class UserNotFound extends Error {}
 
-class ReposNotFound extends Error {}
+class ReposNotFound extends Error {
+  const ReposNotFound() : super(errorMessage: 'Nenhum repositório encontrado');
+}
 
 class RateLimitExceeded extends Error {}
 

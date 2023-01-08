@@ -140,7 +140,7 @@ class GitHubDatasourceImpl implements GitHubDatasource {
 
         return reposStarred;
       } else if (response.statusCode == 404) {
-        throw ReposNotFound();
+        throw const ReposNotFound();
       } else if (response.statusCode == 403) {
         throw RateLimitExceeded();
       } else {

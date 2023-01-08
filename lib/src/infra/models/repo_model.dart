@@ -9,6 +9,7 @@ class RepoModel extends RepoEntity {
     required bool fork,
     required UserModel owner,
     String? description,
+    String? language,
   }) : super(
           fork: fork,
           id: id,
@@ -16,6 +17,7 @@ class RepoModel extends RepoEntity {
           owner: owner,
           stargazersCount: stargazersCount,
           description: description,
+          language: language,
         );
 
   static RepoModel fromMap(Map<String, dynamic> map) {
@@ -26,6 +28,7 @@ class RepoModel extends RepoEntity {
       stargazersCount: map['stargazers_count'],
       fork: map['fork'],
       owner: UserModel.fromMap(map['owner']),
+      language: map['language'],
     );
   }
 }

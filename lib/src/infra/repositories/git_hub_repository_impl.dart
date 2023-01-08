@@ -21,7 +21,7 @@ class GitHubRepositoryImpl implements GitHubRepository {
       final result = await datasource.findRepos(query: query);
 
       if (result.isEmpty) {
-        return Failure(ReposNotFound());
+        return const Failure(ReposNotFound());
       }
 
       return Success(result);
@@ -40,7 +40,7 @@ class GitHubRepositoryImpl implements GitHubRepository {
       final result = await datasource.findUsers(query: query);
 
       if (result.isEmpty) {
-        return const Failure(UsersNotFound('Nenhum usuário encontrado'));
+        return const Failure(UsersNotFound());
       }
 
       return Success(result);
@@ -59,7 +59,7 @@ class GitHubRepositoryImpl implements GitHubRepository {
       final result = await datasource.getReposStarred(login: login);
 
       if (result.isEmpty) {
-        return Failure(ReposNotFound());
+        return const Failure(ReposNotFound());
       }
 
       return Success(result);
@@ -95,12 +95,12 @@ class GitHubRepositoryImpl implements GitHubRepository {
       final result = await datasource.getUserRepos(login: login);
 
       if (result.isEmpty) {
-        return Failure(ReposNotFound());
+        return const Failure(ReposNotFound());
       }
 
       return Success(result);
     } on ReposNotFound {
-      return Failure(ReposNotFound());
+      return const Failure(ReposNotFound());
     } on RateLimitExceeded {
       return Failure(RateLimitExceeded());
     } catch (e) {

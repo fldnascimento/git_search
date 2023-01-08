@@ -186,7 +186,7 @@ void main() {
 
     test('should get user repos but throws ReposNotFound', () async {
       when(() => datasource.getUserRepos(login: any(named: 'login')))
-          .thenThrow(ReposNotFound());
+          .thenThrow(const ReposNotFound());
       final result = await repository.getUserRepos(login: 'login');
       expect(result.fold((s) => s, (f) => f), isA<ReposNotFound>());
     });

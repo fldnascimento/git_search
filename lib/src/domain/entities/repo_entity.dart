@@ -7,6 +7,7 @@ class RepoEntity {
   final int stargazersCount;
   final bool fork;
   final UserEntity owner;
+  final String? language;
 
   RepoEntity({
     required this.id,
@@ -15,5 +16,6 @@ class RepoEntity {
     required this.fork,
     required this.owner,
     this.description,
+    this.language,
   });
 }

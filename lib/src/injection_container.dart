@@ -5,6 +5,7 @@ import 'domain/repositories/git_hub_repository.dart';
 import 'domain/usecases/find_repos_usecase.dart';
 import 'domain/usecases/find_users_usecase.dart';
 import 'domain/usecases/get_repos_starred_usecase.dart';
+import 'domain/usecases/get_user_repos_usecase.dart';
 import 'domain/usecases/get_user_usecase.dart';
 import 'external/datasources/git_hub_datasource_impl.dart';
 import 'infra/datasources/git_hub_datasource.dart';
@@ -22,6 +23,11 @@ void setup() {
   getIt.registerLazySingleton(() => UserInfoCubit(getUserUsecase: getIt()));
 
   // Use cases
+  getIt.registerLazySingleton<GetUserReposUsecase>(
+    () => GetUserReposUsecaseImpl(
+      gitHubRepository: getIt(),
+    ),
+  );
   getIt.registerLazySingleton<FindReposUsecase>(
     () => FindReposUsecaseImpl(
       gitHubRepository: getIt(),

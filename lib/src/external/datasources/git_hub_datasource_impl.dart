@@ -124,4 +124,34 @@ class GitHubDatasourceImpl implements GitHubDatasource {
       rethrow;
     }
   }
+
+  @override
+  Future<List<RepoModel>> getUserRepos({
+    required String login,
+  }) async {
+    try {
+      final url = GitHubEndpoints.getUserRepos(login);
+      final response = await dio.get(url);
+
+      if (response.statusCode == 200) {
+        final reposStarred = (response.data as List)
+            .map((repo) => RepoModel.fromMap(repo))
+            .toList();
+
+        return reposStarred;
+      } else if (response.statusCode == 404) {
+        throw ReposNotFound();
+      } else if (response.statusCode == 403) {
+        throw RateLimitExceeded();
+      } else {
+        throw Exception();
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectTimeout ||
+          e.type == DioErrorType.receiveTimeout) {
+        throw TimeoutConnection();
+      }
+      rethrow;
+    }
+  }
 }

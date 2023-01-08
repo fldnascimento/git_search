@@ -12,6 +12,7 @@ import 'package:git_search/src/infra/models/user_model.dart';
 import '../../../mocks/repos_json.dart';
 import '../../../mocks/repos_starred_json.dart';
 import '../../../mocks/user_json.dart';
+import '../../../mocks/user_repos_json.dart';
 import '../../../mocks/users_json.dart';
 
 class DioMock extends Mock implements Dio {}
@@ -263,6 +264,62 @@ void main() {
           ),
         );
         final future = datasource.getUser(login: 'login');
+        expect(future, throwsA(isA<Exception>()));
+      },
+    );
+  });
+
+  group('getUserRepos -', () {
+    test('should call dio.get', () async {
+      successMock(userReposJson);
+      await datasource.getUserRepos(login: 'login');
+      verify(() => dio.get(any())).called(1);
+    });
+
+    test('should get user repos', () async {
+      successMock(userReposJson);
+      final result = await datasource.getUserRepos(login: 'login');
+      expect(result, isA<List<RepoModel>>());
+    });
+
+    test(
+      'should get user repos but throws TimeoutConnection when connectTimeout',
+      () async {
+        errorMock(DioErrorType.connectTimeout);
+        final future = datasource.getUserRepos(login: 'login');
+        expect(future, throwsA(isA<TimeoutConnection>()));
+      },
+    );
+
+    test(
+      'should get user repos throws TimeoutConnection when receiveTimeout',
+      () async {
+        errorMock(DioErrorType.receiveTimeout);
+        final future = datasource.getUserRepos(login: 'login');
+        expect(future, throwsA(isA<TimeoutConnection>()));
+      },
+    );
+
+    test(
+      'should get user repos throws RateLimitExceeded when statusCode 403',
+      () async {
+        when(() => dio.get(any())).thenThrow(RateLimitExceeded());
+        final future = datasource.getUserRepos(login: 'login');
+        expect(future, throwsA(isA<RateLimitExceeded>()));
+      },
+    );
+
+    test(
+      'should get user repos throws Exception when statusCode is unknown',
+      () async {
+        when(() => dio.get(any())).thenAnswer(
+          (_) async => Response(
+            requestOptions: RequestOptions(path: ''),
+            statusCode: 500,
+            data: '',
+          ),
+        );
+        final future = datasource.getUserRepos(login: 'login');
         expect(future, throwsA(isA<Exception>()));
       },
     );

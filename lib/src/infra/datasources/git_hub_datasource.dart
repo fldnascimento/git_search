@@ -14,4 +14,7 @@ abstract class GitHubDatasource {
   Future<List<RepoModel>> getReposStarred({
     required String login,
   });
+  Future<List<RepoModel>> getUserRepos({
+    required String login,
+  });
 }

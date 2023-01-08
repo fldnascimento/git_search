@@ -168,4 +168,41 @@ void main() {
       expect(result.fold((s) => s, (f) => f), isA<Error>());
     });
   });
+
+  group('getUserRepos -', () {
+    test('should call datasource.getUserRepos', () async {
+      await repository.getUserRepos(login: 'login');
+      verify(() => datasource.getUserRepos(login: any(named: 'login')))
+          .called(1);
+    });
+
+    test('should get user repos', () async {
+      final repo = RepoModel.fromMap(jsonDecode(repoJson));
+      when(() => datasource.getUserRepos(login: any(named: 'login')))
+          .thenAnswer((_) async => [repo]);
+      final result = await repository.getUserRepos(login: 'login');
+      expect(result.getOrNull(), isA<List<RepoModel>>());
+    });
+
+    test('should get user repos but throws ReposNotFound', () async {
+      when(() => datasource.getUserRepos(login: any(named: 'login')))
+          .thenThrow(ReposNotFound());
+      final result = await repository.getUserRepos(login: 'login');
+      expect(result.fold((s) => s, (f) => f), isA<ReposNotFound>());
+    });
+
+    test('should get user repos but throws RateLimitExceeded', () async {
+      when(() => datasource.getUserRepos(login: any(named: 'login')))
+          .thenThrow(RateLimitExceeded());
+      final result = await repository.getUserRepos(login: 'login');
+      expect(result.fold((s) => s, (f) => f), isA<RateLimitExceeded>());
+    });
+
+    test('should get user repos but throws Error', () async {
+      when(() => datasource.getUserRepos(login: any(named: 'login')))
+          .thenThrow(const Error());
+      final result = await repository.getUserRepos(login: 'login');
+      expect(result.fold((s) => s, (f) => f), isA<Error>());
+    });
+  });
 }

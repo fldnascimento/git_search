@@ -86,4 +86,25 @@ class GitHubRepositoryImpl implements GitHubRepository {
       return const Failure(Error());
     }
   }
+
+  @override
+  AsyncResult<List<RepoEntity>, Error> getUserRepos({
+    required String login,
+  }) async {
+    try {
+      final result = await datasource.getUserRepos(login: login);
+
+      if (result.isEmpty) {
+        return Failure(ReposNotFound());
+      }
+
+      return Success(result);
+    } on ReposNotFound {
+      return Failure(ReposNotFound());
+    } on RateLimitExceeded {
+      return Failure(RateLimitExceeded());
+    } catch (e) {
+      return const Failure(Error());
+    }
+  }
 }

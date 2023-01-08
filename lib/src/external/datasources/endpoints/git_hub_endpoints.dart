@@ -18,4 +18,7 @@ class GitHubEndpoints {
   static String getReposStarred(String login) {
     return '$_base/users/$login/starred';
   }
+  static String getUserRepos(String login) {
+    return '$_base/users/$login/repos';
+  }
 }

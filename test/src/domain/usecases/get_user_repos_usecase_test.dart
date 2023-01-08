@@ -1,33 +1,31 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:git_search/src/domain/usecases/get_repos_starred_usecase.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:result_dart/result_dart.dart';
-
 import 'package:git_search/src/domain/entities/repo_entity.dart';
 import 'package:git_search/src/domain/errors/errors.dart';
 import 'package:git_search/src/domain/repositories/git_hub_repository.dart';
+import 'package:git_search/src/domain/usecases/get_user_repos_usecase.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:result_dart/result_dart.dart';
 
 class GitHubRepositoryMock extends Mock implements GitHubRepository {}
 
 void main() {
   late GitHubRepositoryMock repository;
-  late GetReposStarredUsecaseImpl usecase;
+  late GetUserReposUsecaseImpl usecase;
 
   setUp(() {
     repository = GitHubRepositoryMock();
-    usecase = GetReposStarredUsecaseImpl(gitHubRepository: repository);
+    usecase = GetUserReposUsecaseImpl(gitHubRepository: repository);
   });
 
   sucessMock() {
-    when(() => repository.getReposStarred(login: any(named: 'login')))
+    when(() => repository.getUserRepos(login: any(named: 'login')))
         .thenAnswer((_) async => const Success(<RepoEntity>[]));
   }
 
-  test('should call repository.getReposStarred', () async {
+  test('should call repository.getUserRepos', () async {
     sucessMock();
     await usecase(login: 'fldnascimento');
-    verify(() => repository.getReposStarred(login: any(named: 'login')))
-        .called(1);
+    verify(() => repository.getUserRepos(login: any(named: 'login'))).called(1);
   });
 
   test('should return a empty list of repos', () async {
@@ -37,7 +35,7 @@ void main() {
   });
 
   test('should return a ParamEmpty when query is empty', () async {
-    when(() => repository.getReposStarred(login: any(named: 'login')))
+    when(() => repository.getUserRepos(login: any(named: 'login')))
         .thenAnswer((_) async => Failure(ParamEmpty()));
     final result = await usecase(login: '');
     expect(result.fold((s) => s, (f) => f), isA<ParamEmpty>());

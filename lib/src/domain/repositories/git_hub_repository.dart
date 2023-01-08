@@ -17,4 +17,7 @@ abstract class GitHubRepository {
   AsyncResult<List<RepoEntity>, Error> getReposStarred({
     required String login,
   });
+  AsyncResult<List<RepoEntity>, Error> getUserRepos({
+    required String login,
+  });
 }

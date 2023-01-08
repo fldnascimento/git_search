@@ -1,59 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../injection_container.dart';
-import '../cubits/list_repos_user/list_repos_user_cubit.dart';
-import '../cubits/list_repos_user/list_repos_user_state.dart';
+import '../cubits/list_repos/list_repos_cubit.dart';
+import '../cubits/list_repos/list_repos_state.dart';
 import '../my_bloc/bloc_builder.dart';
 import '../style/app_theme.dart';
 import '../widgets/list_tile_repos.dart';
 
-class ListReposUserPage extends StatefulWidget {
-  final String login;
-  final bool starred;
+class ListReposPage extends StatefulWidget {
+  final String query;
 
-  const ListReposUserPage({
+  const ListReposPage({
     super.key,
-    required this.login,
-    required this.starred,
+    required this.query,
   });
 
   @override
-  State<ListReposUserPage> createState() => _ListReposUserPageState();
+  State<ListReposPage> createState() => _ListReposPageState();
 }
 
-class _ListReposUserPageState extends State<ListReposUserPage> {
+class _ListReposPageState extends State<ListReposPage> {
   @override
   void initState() {
     super.initState();
-    if (widget.starred) {
-      getIt<ListReposUserCubit>().getReposStarred(widget.login);
-    } else {
-      getIt<ListReposUserCubit>().getUserRepos(widget.login);
-    }
+    getIt<ListReposCubit>().findRepos(widget.query);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.starred ? 'Repositórios estrelados' : 'Repositórios',
-        ),
+        title: Text(widget.query),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BlocBuilder<ListReposUserCubit, ListReposUserState>(
-            bloc: getIt<ListReposUserCubit>(),
+          BlocBuilder<ListReposCubit, ListReposState>(
+            bloc: getIt<ListReposCubit>(),
             builder: (context, state) {
-              if (state is ListReposUserLoadingState) {
+              if (state is ListReposLoadingState) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
 
-              if (state is ListReposUserFailureState) {
+              if (state is ListReposFailureState) {
                 return Center(
                   child: Text(
                     state.errorMessage,
@@ -65,7 +58,7 @@ class _ListReposUserPageState extends State<ListReposUserPage> {
                 );
               }
 
-              if (state is ListReposUserSuccessState) {
+              if (state is ListReposSuccessState) {
                 return Expanded(
                   child: ListView.builder(
                     itemCount: state.repos.length,
@@ -74,6 +67,9 @@ class _ListReposUserPageState extends State<ListReposUserPage> {
                       final repo = state.repos[index];
 
                       return ListTileRepos(
+                        onTap: () {
+                          context.push('/user/${repo.owner.login}');
+                        },
                         repo: repo,
                       );
                     },

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import 'presenter/pages/list_repos_page.dart';
 import 'presenter/pages/list_repos_user_page.dart';
 import 'presenter/pages/list_users_page.dart';
 import 'presenter/pages/search_page.dart';
@@ -26,6 +27,12 @@ final GoRouter routes = GoRouter(
       builder: (context, state) => ListReposUserPage(
         login: state.params['login'] ?? '',
         starred: state.params['starred'] == 'true',
+      ),
+    ),
+    GoRoute(
+      path: '/list-repos/:query',
+      builder: (context, state) => ListReposPage(
+        query: state.params['query'] ?? '',
       ),
     ),
     GoRoute(

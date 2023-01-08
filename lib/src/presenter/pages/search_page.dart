@@ -79,7 +79,11 @@ class _SearchPageState extends State<SearchPage> {
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: Spacing.stackMedium),
-                            const Icon(Icons.search, size: Sizes.mega),
+                            Icon(
+                              Icons.search,
+                              size: Sizes.mega,
+                              color: context.colorScheme.inverseSurface,
+                            ),
                           ],
                         ),
                       ),

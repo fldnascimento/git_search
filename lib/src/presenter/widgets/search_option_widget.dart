@@ -24,7 +24,11 @@ class SearchOptionWidget extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          Icon(icon, size: Sizes.large),
+          Icon(
+            icon,
+            size: Sizes.large,
+            color: context.colorScheme.inverseSurface,
+          ),
           const SizedBox(width: Spacing.inlineMedium),
           Expanded(
             child: Text(

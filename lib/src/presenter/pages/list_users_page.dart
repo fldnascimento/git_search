@@ -69,10 +69,12 @@ class _ListUsersPageState extends State<ListUsersPage> {
                         onTap: () async {
                           context.push('/user/${user.login}');
                         },
-                        leading: CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: NetworkImage(user.avatarUrl),
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Image.network(
+                            user.avatarUrl,
+                            width: 50,
+                          ),
                         ),
                         title: Text(
                           user.login,

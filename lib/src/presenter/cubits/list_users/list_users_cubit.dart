@@ -10,6 +10,7 @@ class ListUsersCubit extends Cubit<ListUsersState> {
   }) : super(ListUsersLoadingState());
 
   void findUsers(String query) async {
+    emit(ListUsersLoadingState());
     final result = await findUsersUsecase(query: query);
     result.fold(
       (success) => emit(ListUsersSuccessState(users: success)),

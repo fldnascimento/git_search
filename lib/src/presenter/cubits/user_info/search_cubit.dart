@@ -7,7 +7,7 @@ class UserInfoCubit extends Cubit<UserInfoState> {
 
   UserInfoCubit({
     required this.getUserUsecase,
-  }) : super(UserInfoInitialState());
+  }) : super(UserInfoLoadingState());
 
   void getUser(String login) async {
     emit(UserInfoLoadingState());

@@ -13,6 +13,7 @@ class ListReposUserCubit extends Cubit<ListReposUserState> {
   }) : super(ListReposUserLoadingState());
 
   void getUserRepos(String login) async {
+    emit(ListReposUserLoadingState());
     final result = await getUserReposUsecase(login: login);
     result.fold(
       (success) => emit(ListReposUserSuccessState(repos: success)),
@@ -23,6 +24,7 @@ class ListReposUserCubit extends Cubit<ListReposUserState> {
   }
 
   void getReposStarred(String login) async {
+    emit(ListReposUserLoadingState());
     final result = await getReposStarredUsecase(login: login);
     result.fold(
       (success) => emit(ListReposUserSuccessState(repos: success)),

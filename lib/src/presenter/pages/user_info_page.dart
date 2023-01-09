@@ -37,7 +37,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height - 100,
           child: Padding(
             padding: const EdgeInsets.only(top: Spacing.stackMedium),
             child: Column(
@@ -53,7 +53,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     }
 
                     if (state is UserInfoLoadingState) {
-                      return const ProgressIndicatorWidget();
+                      return const Expanded(child: ProgressIndicatorWidget());
                     }
 
                     if (state is UserInfoSuccessState) {

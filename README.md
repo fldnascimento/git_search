@@ -1,7 +1,7 @@
 
 # Git Search
 
-![Coverage Status](https://img.shields.io/badge/coverage-96%25-green)
+![Coverage Status](https://img.shields.io/badge/coverage-95.5%25-green)
 <p align="center">
 <img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/assets/image/logo.png" width="250" alt="logo" />
 </p>

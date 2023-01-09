@@ -85,8 +85,6 @@ class GitHubDatasourceImpl implements GitHubDatasource {
             .toList();
 
         return reposStarred;
-      } else if (response.statusCode == 403) {
-        throw const RateLimitExceeded();
       } else {
         throw Exception();
       }
@@ -94,6 +92,9 @@ class GitHubDatasourceImpl implements GitHubDatasource {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
         throw const TimeoutConnection();
+      }
+      if (e.response?.statusCode == 403) {
+        throw const RateLimitExceeded();
       }
       rethrow;
     }
@@ -113,8 +114,6 @@ class GitHubDatasourceImpl implements GitHubDatasource {
         return user;
       } else if (response.statusCode == 404) {
         throw const UserNotFound();
-      } else if (response.statusCode == 403) {
-        throw const RateLimitExceeded();
       } else {
         throw Exception();
       }
@@ -122,6 +121,9 @@ class GitHubDatasourceImpl implements GitHubDatasource {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
         throw const TimeoutConnection();
+      }
+      if (e.response?.statusCode == 403) {
+        throw const RateLimitExceeded();
       }
       rethrow;
     }
@@ -143,8 +145,6 @@ class GitHubDatasourceImpl implements GitHubDatasource {
         return reposStarred;
       } else if (response.statusCode == 404) {
         throw const ReposNotFound();
-      } else if (response.statusCode == 403) {
-        throw const RateLimitExceeded();
       } else {
         throw Exception();
       }
@@ -152,6 +152,9 @@ class GitHubDatasourceImpl implements GitHubDatasource {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
         throw const TimeoutConnection();
+      }
+      if (e.response?.statusCode == 403) {
+        throw const RateLimitExceeded();
       }
       rethrow;
     }

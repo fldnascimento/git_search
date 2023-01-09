@@ -1,16 +1,47 @@
-# git_search
 
-A new Flutter project.
+# Git Search
+<p align="center">
+<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/assets/image/logo.png" width="250" alt="search page" />
+</p>
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Um projeto feito em `Flutter` que faz pesquisa no github.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+É possível pesquisar por usuários e repositórios.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Coverage Status](https://img.shields.io/badge/coverage-96.2%25-green)
+## Screenshots
+<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/search_page.png" width="300" alt="search page" />
+<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/list_repos_page.png" width="300" alt="list repos page" />
+<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/user_info_page.png" width="300" alt="user info page" />
+
+## Download
+Download apk
+[aqui](https://drive.google.com/file/d/1BsWEFYBq8-ku92Kkf0qbZ3QkjKGdcEmg/view?usp=sharing)
+
+Link da web [aqui](https://git-search-fd6d1.web.app/)
+
+
+## Arquitetura
+- Clean Architecture
+- SOLID
+- Clean Code
+- Repository Pattern
+
+## Packages usados
+
+| Packge        | Version      | Description |
+| ------|-----|-----|
+| result_dart  	| `^1.0.3` 	| Simplifica o tratamento de erros 	|
+| get_it  	| `^7.2.0` 	| Service Locator  	|
+| equatable  	| `^2.0.5` 	| Simplifica as comparações de objetos 	|
+| go_router  	| `^6.0.1` 	| Simplifica a navegação entre telas	|
+| flutter_lints  	| `^2.0.0` 	| Lints que ajudam a melhorar a qualidade do código	|
+| mocktail  	| `^0.3.0` 	| Simplifica os testes de unidade 	|
+| dart_code_metrics  	| `^4.16.0` 	| Analisa e ajuda a melhorar a qualidade do código 	|
+| flutter_launcher_icons  	| `^0.11.0` 	| Gerador de icons 	|
+
+
+## Metricas
+<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/metrics.png" width="100%" alt="search page" />

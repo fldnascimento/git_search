@@ -5,6 +5,7 @@ import '../../injection_container.dart';
 import '../cubits/user_info/search_cubit.dart';
 import '../cubits/user_info/search_state.dart';
 import '../my_bloc/bloc_builder.dart';
+import '../style/breakpoints.dart';
 import '../style/components/components.dart';
 import '../style/spacing.dart';
 import '../widgets/failure_widget.dart';
@@ -56,12 +57,15 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     }
 
                     if (state is UserInfoSuccessState) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          left: Spacing.inlineMedium,
-                          right: Spacing.inlineMedium,
-                        ),
-                        child: Center(
+                      return Center(
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            maxWidth: Breakpoints.mobileMaxWidth,
+                          ),
+                          padding: const EdgeInsets.only(
+                            left: Spacing.inlineMedium,
+                            right: Spacing.inlineMedium,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,

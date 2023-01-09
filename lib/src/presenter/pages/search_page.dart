@@ -5,6 +5,7 @@ import '../cubits/search/search_cubit.dart';
 import '../cubits/search/search_state.dart';
 import '../my_bloc/bloc_builder.dart';
 import '../style/app_theme.dart';
+import '../style/breakpoints.dart';
 import '../style/sizes.dart';
 import '../style/spacing.dart';
 import '../widgets/container_search.dart';
@@ -31,6 +32,9 @@ class _SearchPageState extends State<SearchPage> {
             Column(
               children: [
                 Container(
+                  constraints: const BoxConstraints(
+                    maxWidth: Breakpoints.desktopMaxWidth,
+                  ),
                   color: context.colorScheme.surface,
                   padding: const EdgeInsets.all(Spacing.insetExtraSmall),
                   child: TextField(

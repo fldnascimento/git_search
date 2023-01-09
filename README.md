@@ -3,7 +3,7 @@
 
 ![Coverage Status](https://img.shields.io/badge/coverage-96.2%25-green)
 <p align="center">
-<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/assets/image/logo.png" width="250" alt="search page" />
+<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/assets/image/logo.png" width="250" alt="logo" />
 </p>
 
 
@@ -47,5 +47,5 @@ Link da web [aqui](https://git-search-fd6d1.web.app/)
 | flutter_launcher_icons  	| `^0.11.0` 	| Gerador de icons 	|
 
 
-## Metricas
-<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/metrics.png" width="100%" alt="search page" />
+## Métricas
+<img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/metrics.png" width="100%" alt="métricas" />

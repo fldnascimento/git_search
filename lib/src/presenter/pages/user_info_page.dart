@@ -10,7 +10,7 @@ import '../style/components/components.dart';
 import '../style/spacing.dart';
 import '../widgets/failure_widget.dart';
 import '../widgets/progress_indicator_widget.dart';
-import '../widgets/user_profile.dart';
+import '../widgets/user_profile_widget.dart';
 
 class UserInfoPage extends StatefulWidget {
   final String login;
@@ -70,7 +70,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              UserProfile(user: state.user),
+                              UserProfileWidget(user: state.user),
                               const SizedBox(height: Spacing.stackExtraSmall),
                               Row(
                                 mainAxisAlignment:

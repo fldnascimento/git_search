@@ -8,7 +8,7 @@ import '../style/app_theme.dart';
 import '../style/breakpoints.dart';
 import '../style/sizes.dart';
 import '../style/spacing.dart';
-import '../widgets/container_search.dart';
+import '../widgets/container_search_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -93,7 +93,7 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                     ),
                   ),
-                  child: ContainerSearch(query: state.valueTextField),
+                  child: ContainerSearchWidget(query: state.valueTextField),
                 );
               },
             ),

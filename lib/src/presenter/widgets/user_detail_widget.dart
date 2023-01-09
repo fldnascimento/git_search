@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:git_search/src/presenter/style/app_theme.dart';
+
+import '../style/app_theme.dart';
+import '../style/spacing.dart';
 
 class UserDetailWidget extends StatelessWidget {
   final IconData icon;
@@ -15,7 +17,7 @@ class UserDetailWidget extends StatelessWidget {
     return Row(
       children: [
         Icon(icon),
-        const SizedBox(width: 8),
+        const SizedBox(width: Spacing.inlineExtraSmall),
         Expanded(
           child: Text(
             label,

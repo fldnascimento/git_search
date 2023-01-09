@@ -6,9 +6,9 @@ import '../style/breakpoints.dart';
 import '../style/spacing.dart';
 import '../widgets/search_option_widget.dart';
 
-class ContainerSearch extends StatelessWidget {
+class ContainerSearchWidget extends StatelessWidget {
   final String query;
-  const ContainerSearch({
+  const ContainerSearchWidget({
     super.key,
     required this.query,
   });

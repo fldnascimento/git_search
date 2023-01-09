@@ -4,11 +4,11 @@ import '../../domain/entities/repo_entity.dart';
 import '../style/app_theme.dart';
 import '../style/spacing.dart';
 
-class ListTileRepos extends StatelessWidget {
+class ListTileReposWidget extends StatelessWidget {
   final void Function()? onTap;
   final RepoEntity repo;
 
-  const ListTileRepos({
+  const ListTileReposWidget({
     super.key,
     required this.repo,
     this.onTap,

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/user_entity.dart';
 import '../style/app_theme.dart';
+import '../style/sizes.dart';
+import '../style/spacing.dart';
 import '../widgets/user_detail_widget.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfileWidget extends StatelessWidget {
   final UserEntity user;
 
-  const UserProfile({
+  const UserProfileWidget({
     super.key,
     required this.user,
   });
@@ -23,7 +25,7 @@ class UserProfile extends StatelessWidget {
             width: 300,
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: Spacing.stackMedium),
         Text(
           user.name ?? user.login,
           style: context.textTheme.headline3?.copyWith(
@@ -31,7 +33,6 @@ class UserProfile extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 2),
         Text(
           user.login,
           style: context.textTheme.headline5?.copyWith(
@@ -39,7 +40,7 @@ class UserProfile extends StatelessWidget {
           ),
           overflow: TextOverflow.ellipsis,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: Spacing.stackMedium),
         Visibility(
           visible: user.bio != null,
           child: Column(
@@ -48,14 +49,14 @@ class UserProfile extends StatelessWidget {
                 user.bio ?? '',
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: Spacing.stackMedium),
             ],
           ),
         ),
         Card(
-          elevation: 1,
+          elevation: Sizes.pico,
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(Spacing.insetMedium),
             child: Column(
               children: [
                 Visibility(
@@ -65,7 +66,7 @@ class UserProfile extends StatelessWidget {
                     label: user.company ?? '',
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: Spacing.stackExtraSmall),
                 Visibility(
                   visible: user.location != null,
                   child: UserDetailWidget(
@@ -73,7 +74,7 @@ class UserProfile extends StatelessWidget {
                     label: user.location ?? '',
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: Spacing.stackExtraSmall),
                 Visibility(
                   visible: visibilityFollowersAndFollowing,
                   child: UserDetailWidget(
@@ -81,7 +82,7 @@ class UserProfile extends StatelessWidget {
                     label: followersAndFollowing,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: Spacing.stackExtraSmall),
                 Visibility(
                   visible: user.publicRepos != null,
                   child: UserDetailWidget(
@@ -93,7 +94,7 @@ class UserProfile extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: Spacing.stackMedium),
       ],
     );
   }

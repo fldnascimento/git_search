@@ -5,7 +5,7 @@ import '../cubits/list_repos_user/list_repos_user_cubit.dart';
 import '../cubits/list_repos_user/list_repos_user_state.dart';
 import '../my_bloc/bloc_builder.dart';
 import '../widgets/failure_widget.dart';
-import '../widgets/list_tile_repos.dart';
+import '../widgets/list_tile_repos_widget.dart';
 import '../widgets/progress_indicator_widget.dart';
 
 class ListReposUserPage extends StatefulWidget {
@@ -64,7 +64,7 @@ class _ListReposUserPageState extends State<ListReposUserPage> {
                     itemBuilder: (context, index) {
                       final repo = state.repos[index];
 
-                      return ListTileRepos(
+                      return ListTileReposWidget(
                         repo: repo,
                       );
                     },

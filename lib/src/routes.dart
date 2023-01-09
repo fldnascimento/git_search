@@ -7,7 +7,9 @@ import 'presenter/pages/search_page.dart';
 import 'presenter/pages/splash_page.dart';
 import 'presenter/pages/user_info_page.dart';
 
-GoRouter routes({String? initialLocation}) => GoRouter(
+final getRoutes = routes();
+
+GoRouter routes({String? initialLocation = '/'}) => GoRouter(
       initialLocation: initialLocation,
       routes: <RouteBase>[
         GoRoute(

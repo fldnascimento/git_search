@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:git_search/src/presenter/style/color_schemes.dart';
+
+import 'color_schemes.dart';
 
 class AppTheme {
   const AppTheme._();

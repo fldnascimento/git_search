@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:git_search/src/presenter/style/app_colors.dart';
+import 'app_colors.dart';
 
 final lightColorScheme = ColorScheme(
   brightness: Brightness.light,

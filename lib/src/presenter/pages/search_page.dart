@@ -23,6 +23,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     final cubit = getIt<SearchCubit>();
+    _textController.text = cubit.state.valueTextField;
 
     return Scaffold(
       body: SafeArea(

@@ -26,11 +26,6 @@ class _ListUsersPageState extends State<ListUsersPage> {
   void initState() {
     getIt<ListUsersCubit>().findUsers(widget.query);
     super.initState();
-    String teste = '';
-    switch (teste) {
-      case "":
-        break;
-    }
   }
 
   @override

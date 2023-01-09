@@ -1,5 +1,4 @@
 // ignore_for_file: unused_import
-import 'package:git_search/main.dart';
 import 'package:git_search/src/infra/datasources/git_hub_datasource.dart';
 import 'package:git_search/src/infra/repositories/git_hub_repository_impl.dart';
 import 'package:git_search/src/infra/models/repo_model.dart';

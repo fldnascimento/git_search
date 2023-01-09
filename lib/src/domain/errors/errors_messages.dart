@@ -1,6 +1,4 @@
-class ErrorsMessages {
-  const ErrorsMessages._();
-
+abstract class ErrorsMessages {
   static const String usersNotFound = 'Nenhum usuário encontrado';
   static const String userNotFound = 'Usuário não encontrado';
   static const String reposNotFound = 'Nenhum repositório encontrado';

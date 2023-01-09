@@ -12,10 +12,11 @@ Um projeto feito em `Flutter` que faz pesquisa no github.
 
 ![Coverage Status](https://img.shields.io/badge/coverage-96.2%25-green)
 ## Screenshots
+<p float="left">
 <img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/search_page.png" width="300" alt="search page" />
 <img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/list_repos_page.png" width="300" alt="list repos page" />
 <img src="https://raw.githubusercontent.com/fldnascimento/git_search/main/screenshots/user_info_page.png" width="300" alt="user info page" />
-
+</p>
 ## Download
 Download apk
 [aqui](https://drive.google.com/file/d/1BsWEFYBq8-ku92Kkf0qbZ3QkjKGdcEmg/view?usp=sharing)

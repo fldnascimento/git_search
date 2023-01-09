@@ -22,9 +22,9 @@ Um projeto feito em `Flutter` que faz pesquisa no github.
 
 ## Download
 Download apk
-[aqui](https://drive.google.com/file/d/1yFF7_jIcxrEpC7rWsNCZRHPZeM2UHsuf/view?usp=sharing)
+[aqui](https://felipe.li/apk_git_search.html)
 
-Link da web [aqui](https://git-search-fd6d1.web.app/)
+Link da web [aqui](https://felipe.li/git_search.html)
 
 
 ## Arquitetura
